@@ -1,12 +1,11 @@
 package org.example
 
-import com.google.gson.annotations.SerializedName
-
-class Game(@SerializedName("title") val title: String, @SerializedName("thumb") val thumb: String, val description: String) {
+data class Game(val title: String, val thumb: String, val steamAppID: String) {
 
     override fun toString(): String {
-        return "Game(title='$title', thumb='$thumb', description='$description')"
+        return "Game Description: \n" +
+                "Title: $title, \n" +
+                "Thumb: $thumb, \n" +
+                "SteamAppID: $steamAppID,"
     }
-
-
 }

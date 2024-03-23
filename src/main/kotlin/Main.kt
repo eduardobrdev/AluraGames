@@ -19,7 +19,12 @@ fun main() {
     println(json)
 
     val gson = Gson()
-    val myGame = gson.fromJson(json, GameInfo::class.java)
+    val myInfoGame = gson.fromJson(json, GameInfo::class.java)
+    val myGame = Game(
+        myInfoGame.info.title,
+        myInfoGame.info.thumb,
+        myInfoGame.info.steamAppID
+    )
 
     println(myGame)
 }
