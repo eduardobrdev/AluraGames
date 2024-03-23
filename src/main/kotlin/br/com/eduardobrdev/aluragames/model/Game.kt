@@ -1,4 +1,4 @@
-package org.example
+package br.com.eduardobrdev.aluragames.model
 
 data class Game(val title: String, val thumb: String, val steamAppID: String) {
 
