@@ -1,5 +1,6 @@
 package br.com.eduardobrdev.aluragames.model
 
+import java.util.Scanner
 import kotlin.random.Random
 
 data class Gamer(var name: String, var email: String) {
@@ -13,6 +14,8 @@ data class Gamer(var name: String, var email: String) {
         }
     var iD: String? = null
         private set
+
+    var gamesSearch = mutableListOf<Game?>()
 
     constructor(name: String, email: String, birthDate: String, userName: String): this(name, email) {
         this.birthDate = birthDate
@@ -44,11 +47,33 @@ data class Gamer(var name: String, var email: String) {
     }
 
     private fun emailValidator(): String {
-        val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,6}\$")
+        val regex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\$")
         if(regex.matches(email)) {
             return email
         } else {
             throw IllegalArgumentException("Email invalid.")
+        }
+    }
+
+    companion object {
+        fun registerGamer(reader: Scanner): Gamer {
+            println("Welcome to AluraGames! Let's get you registered. Enter your name:")
+            val name = reader.nextLine()
+            println("Enter your email:")
+            val email = reader.nextLine()
+            println("Would you like to complete your registration with username and date of birth? (Y/N)")
+            val choose = reader.nextLine()
+
+            if (choose.equals("y", true)) {
+                println("Enter your date of birth (MM/DD/YYYY):")
+                val birth = reader.nextLine()
+                println("Enter your UserName:")
+                val userName = reader.nextLine()
+
+                return Gamer(name, email, birth, userName)
+            } else {
+                return Gamer (name, email)
+            }
         }
     }
 }
